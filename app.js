@@ -1,12 +1,15 @@
+import http from 'http';
 
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
+const hostname = '0.0.0.0';
+const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, Docker!');
+const app = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello, World!');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
+
