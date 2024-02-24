@@ -17,9 +17,11 @@ const app = http.createServer((req, res) => {
       res.end();
     })
   } else {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Content for '+url+' url was not provided!');
+    fs.readFile("views/default.html", function (err, data) {
+      res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+      res.write(data);
+      res.end();
+    })
   }
 });
 
